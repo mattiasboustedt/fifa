@@ -1,5 +1,9 @@
 <?php
 
+Route::resource('games', 'GamesController');
+Route::resource('players', 'PlayersController');
+
+
 Route::group(['middleware' => 'web'], function() {
     /**
      * Switch between the included languages

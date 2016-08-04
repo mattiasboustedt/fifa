@@ -22,6 +22,8 @@
             <ul class="nav navbar-nav">
                 <li>{!! link_to_route('frontend.index', trans('navs.frontend.home')) !!}</li>
                 <li>{!! link_to_route('frontend.macros', trans('navs.frontend.macros')) !!}</li>
+                <li>{!! link_to_route('games.create', 'Register Game') !!}</li>
+                <li>{!! link_to_route('players.index', 'Players') !!}</li>
             </ul>
 
             <!-- Right Side Of Navbar -->

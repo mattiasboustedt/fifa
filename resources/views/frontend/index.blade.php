@@ -12,6 +12,52 @@
 
                 <div class="panel-body">
                     {{ trans('strings.frontend.welcome_to', ['place' => app_name()]) }}
+
+                    <p>{{ $newRating['a'] }}</p>
+                    <p>{{ $newRating['b'] }}</p>
+
+
+                    <p>{{ $prediction['a'] * 100 . ' % chance to win.'}}</p>
+                    <p>{{ $prediction['b'] * 100 . ' % chance to win.'}}</p>
+
+                    @if(!$users->isEmpty())
+                        @foreach($users as $user)
+                            <?php
+                                $stats = $user->stats;
+                                $games = $user->games;
+
+                                foreach ($games as $game ) {
+                                    echo '<p>' . $game->user_one_id . '</p>';
+                                }
+                            ?>
+
+                            <p> {{ $stats }}</p>
+                            <p>{{ $user->email }}</p>
+                            @foreach($user->roles as $role)
+                                <p>{{ $role->name }}</p>
+                            @endforeach
+                        @endforeach
+                    @endif
+
+
+                    @if(!$games->isEmpty())
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Player One</th>
+                                <th>Player One Score</th>
+                                <th>Player Two</th>
+                                <th>Player Two Score</th>
+                            </tr>
+                        @foreach($games as $game)
+                            <tr>
+                                <td>{{ $game->getUser($game->user_one_id)->name }}</td>
+                                <td>{{ $game->user_one_score }}</td>
+                                <td>{{ $game->getUser($game->user_two_id)->name }}</td>
+                                <td>{{ $game->user_two_score }}</td>
+                            </tr>
+                        @endforeach
+                        </table>
+                    @endif
                 </div>
             </div><!-- panel -->
 

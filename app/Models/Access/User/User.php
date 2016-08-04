@@ -35,4 +35,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     *
+     * Get the stats associated with the user
+     */
+    public function stats()
+    {
+        return $this->hasOne('App\Models\Stats');
+    }
+
+    public function games()
+    {
+        return $this->hasMany('App\Models\Game', 'user_one_id')->orWhere('user_two_id', $this->id);
+    }
+
 }
